@@ -4,12 +4,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvXOyS6f8_ochY5O0WXP7iyUSvAYKnCco",
-  authDomain: "portfolio-abhay-c4dc1.firebaseapp.com",
-  projectId: "portfolio-abhay-c4dc1",
-  storageBucket: "portfolio-abhay-c4dc1.firebasestorage.app",
-  messagingSenderId: "118259514825",
-  appId: "1:118259514825:web:b0831dc4118b90e5f83c18"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Init Firebase
