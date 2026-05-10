@@ -151,7 +151,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
               
               {/* 'Web Development' Text */}
               <Text position={[0, -0.34, 0.011]} fontSize={0.045} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
-                Web Development
+                Web Developer
               </Text>
             </RoundedBox>
             
