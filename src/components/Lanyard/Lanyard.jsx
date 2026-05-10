@@ -136,7 +136,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
               {/* Photo Frame */}
               <mesh position={[0, 0.15, 0.011]}>
                 <planeGeometry args={[0.55, 0.55]} />
-                <meshBasicMaterial map={profilePic} transparent={true} />
+                <meshBasicMaterial map={profilePic} transparent={true} alphaTest={0.5} />
               </mesh>
 
               {/* 'Full Stack' Pill Background */}
