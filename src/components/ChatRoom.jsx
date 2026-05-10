@@ -47,9 +47,10 @@ export default function ChatRoom() {
 
     // Send Email Notification via EmailJS
     const templateParams = {
-      from_name: user.displayName,
+      name: user.displayName,
       message: message,
-      user_email: user.email || 'No email provided',
+      email: user.email || 'No email provided',
+      title: "New Chat Room Message",
     };
 
     emailjs.send(
