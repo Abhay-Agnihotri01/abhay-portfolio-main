@@ -32,39 +32,46 @@ export default function ChatRoom() {
   }, []);
 
   // Kirim pesan
-  const sendMessage = async (e) => {
+  const sendMessage = (e) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    // Send to Firestore
-    await addDoc(collection(db, "messages"), {
-      text: message,
-      uid: user.uid,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      createdAt: serverTimestamp()
-    });
+    // 1. Instantly clear the message box so it feels fast
+    const textToSend = message;
+    setMessage("");
 
-    // Send Email Notification via EmailJS
+    // 2. Prepare EmailJS data
     const templateParams = {
       name: user.displayName,
-      message: message,
+      message: textToSend,
       email: user.email || 'No email provided',
       title: "New Chat Room Message",
     };
 
+    console.log('>>> Attempting to send email with params:', templateParams);
+
+    // 3. Send Email Notification via EmailJS (Does not block)
     emailjs.send(
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       templateParams,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      {
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      }
     ).then((response) => {
-      console.log('Email sent successfully!', response.status, response.text);
+      console.log('>>> Email sent successfully!', response.status, response.text);
     }).catch((err) => {
-      console.error('Failed to send email notification:', err);
+      console.error('>>> Failed to send email notification:', err);
     });
 
-    setMessage("");
+    // 4. Send to Firestore Database (Does not block)
+    addDoc(collection(db, "messages"), {
+      text: textToSend,
+      uid: user.uid,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      createdAt: serverTimestamp()
+    }).catch(err => console.error("Firestore Error:", err));
   };
 
   return (
