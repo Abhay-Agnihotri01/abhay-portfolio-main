@@ -140,17 +140,17 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
               </mesh>
 
               {/* 'Full Stack' Pill Background */}
-              <RoundedBox args={[0.45, 0.12, 0.01]} radius={0.02} position={[0, -0.22, 0.011]}>
+              <RoundedBox args={[0.45, 0.12, 0.01]} radius={0.02} position={[0, -0.14, 0.012]}>
                 <meshBasicMaterial color="#363e6e" />
               </RoundedBox>
 
               {/* 'Full Stack' Text */}
-              <Text position={[0, -0.22, 0.017]} fontSize={0.055} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+              <Text position={[0, -0.14, 0.018]} fontSize={0.055} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
                 Full Stack
               </Text>
               
-              {/* 'Web Development' Text */}
-              <Text position={[0, -0.34, 0.011]} fontSize={0.045} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+              {/* 'Web Developer' Text */}
+              <Text position={[0, -0.26, 0.012]} fontSize={0.045} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
                 Web Developer
               </Text>
             </RoundedBox>
