@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
 import { auth, loginWithGoogle, logout, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
@@ -35,6 +36,7 @@ export default function ChatRoom() {
     e.preventDefault();
     if (!message.trim()) return;
 
+    // Send to Firestore
     await addDoc(collection(db, "messages"), {
       text: message,
       uid: user.uid,
@@ -42,6 +44,25 @@ export default function ChatRoom() {
       photoURL: user.photoURL,
       createdAt: serverTimestamp()
     });
+
+    // Send Email Notification via EmailJS
+    const templateParams = {
+      from_name: user.displayName,
+      message: message,
+      user_email: user.email || 'No email provided',
+    };
+
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    ).then((response) => {
+      console.log('Email sent successfully!', response.status, response.text);
+    }).catch((err) => {
+      console.error('Failed to send email notification:', err);
+    });
+
     setMessage("");
   };
 
