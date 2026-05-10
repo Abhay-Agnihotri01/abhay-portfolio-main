@@ -2,13 +2,14 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useGLTF, useTexture, Environment, Lightformer, Decal } from '@react-three/drei';
+import { useGLTF, useTexture, Environment, Lightformer, RoundedBox, Text } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 // replace with your own imports, see the usage snippet for details
 const cardGLB = "/assets/card.glb";
 const lanyard = "/assets/lanyard.png";
+const profilePicURL = "/assets/Abhay.png";
 
 import * as THREE from 'three';
 import './Lanyard.css';
@@ -43,6 +44,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
+  const profilePic = useTexture(profilePicURL);
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
@@ -99,9 +101,6 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
 
   curve.curveType = 'chordal';
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  
-  // Load custom profile picture
-  const profilePic = useTexture("/assets/Abhay.png");
 
   return (
     <>
@@ -125,17 +124,33 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
             onPointerOut={() => hover(false)}
             onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
             onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
-            <mesh geometry={nodes.card.geometry}>
-              <meshPhysicalMaterial map={materials.base.map} map-anisotropy={16} clearcoat={1} clearcoatRoughness={0.15} roughness={0.9} metalness={0.8} />
+            {/* --- NEW CUSTOM CARD DESIGN --- */}
+            <RoundedBox args={[0.71, 1.0, 0.02]} radius={0.025} position={[0, -0.05, 0.015]}>
+              <meshPhysicalMaterial color="#111111" clearcoat={1} clearcoatRoughness={0.15} roughness={0.4} metalness={0.6} />
               
-              {/* Overlay custom profile picture over the card */}
-              <Decal
-                position={[0, 0.15, 0.02]} // Positioned near the middle
-                rotation={[0, 0, 0]}
-                scale={[0.4, 0.4, 0.1]} // Size of the image on the card
-                map={profilePic}
-              />
-            </mesh>
+              {/* White glowing border for the card to match the theme */}
+              <RoundedBox args={[0.72, 1.01, 0.01]} radius={0.025} position={[0, 0, -0.005]}>
+                <meshBasicMaterial color="#a855f7" />
+              </RoundedBox>
+
+              {/* Photo Frame */}
+              <mesh position={[0, 0.15, 0.011]}>
+                <planeGeometry args={[0.35, 0.35]} />
+                <meshBasicMaterial map={profilePic} />
+              </mesh>
+
+              {/* Name */}
+              <Text position={[0, -0.15, 0.011]} fontSize={0.06} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+                Abhay Agnihotri
+              </Text>
+              
+              {/* Title */}
+              <Text position={[0, -0.23, 0.011]} fontSize={0.035} color="#a855f7" anchorX="center" anchorY="middle">
+                Full Stack Developer
+              </Text>
+            </RoundedBox>
+            
+            {/* Keeping the original clip and clamp for physics and lanyard attachment */}
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
             <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
           </group>
