@@ -125,7 +125,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
             onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
             onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
             {/* --- NEW CUSTOM CARD DESIGN --- */}
-            <RoundedBox args={[0.71, 1.0, 0.02]} radius={0.025} position={[0, -0.05, 0.015]}>
+            <RoundedBox args={[0.71, 1.0, 0.02]} radius={0.025} position={[0, 0.48, 0.015]}>
               <meshPhysicalMaterial color="#111111" clearcoat={1} clearcoatRoughness={0.15} roughness={0.4} metalness={0.6} />
               
               {/* White glowing border for the card to match the theme */}
