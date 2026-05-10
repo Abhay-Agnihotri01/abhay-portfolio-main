@@ -123,7 +123,7 @@ export const listProyek = [
     borderColor: "#8B5CF6",
     // borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #8B5CF6, #000)",
-    url: "https://github.com/rissss21",
+    url: "https://github.com/Abhay-Agnihotri01/ATS-Resume-Analyser",
     dad: "100",
   },
   {
@@ -134,7 +134,7 @@ export const listProyek = [
     fullDescription:"A full-stack enterprise URL shortener platform developed using React, Spring Boot, MySQL, and JWT Authentication to create secure and scalable shortened links with advanced analytics capabilities. The platform provides real-time tracking of user behavior, click-through rates, geographic insights, and engagement statistics through an interactive analytics dashboard. Designed with performance optimization and modern RESTful APIs, Linklytics focuses on delivering a fast, reliable, and user-friendly experience for managing and analyzing digital links efficiently.",
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "https://github.com/rissss21",
+    url: "https://github.com/Abhay-Agnihotri01/LinkLytics",
     dad: "200",
   },
   {
@@ -145,7 +145,7 @@ export const listProyek = [
     fullDescription:"An interactive data analytics dashboard developed using Power BI and DAX to visualize and analyze large-scale election datasets with meaningful insights and KPIs. The dashboard includes data cleaning, transformation, and modeling processes to present metrics such as vote share, voter turnout, winning margins, and constituency-level analysis. With dynamic filtering, drill-down capabilities, and visually engaging reports, the project demonstrates the power of business intelligence and data visualization in transforming complex datasets into actionable insights for decision-making and analysis.",
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "https://github.com/rissss21",
+    url: "https://github.com/Abhay-Agnihotri01/2024-election-result-analysis",
     dad: "300",
   },
   {
@@ -156,7 +156,7 @@ export const listProyek = [
     fullDescription:"An intelligent movie recommendation system developed using Python, Scikit-learn, and machine learning algorithms to provide personalized movie suggestions based on user interests and similarity analysis. The project utilizes data preprocessing, feature engineering, and cosine similarity techniques on thousands of movie records to generate accurate recommendations. Integrated with external APIs and an interactive Streamlit interface, the system delivers dynamic movie information, seamless user interaction, and an engaging recommendation experience while demonstrating the practical application of AI and data science in entertainment platforms.",
     borderColor: "#EF4444",
     gradient: "linear-gradient(180deg, #EF4444, #000)",
-    url: "https://github.com/rissss21",
+    url: "https://github.com/Abhay-Agnihotri01/movie-recommendor-system.git",
     dad: "400",
   },
     {
@@ -167,7 +167,7 @@ export const listProyek = [
     fullDescription:"An AI-powered tree species classification system developed using Python, PyTorch, and deep learning techniques to accurately identify and classify different tree species from images. The project utilizes data preprocessing, augmentation, and transfer learning with advanced neural network models to improve prediction accuracy across multiple classes. Integrated with an interactive Streamlit interface, the application provides real-time predictions, confidence scores, and visual insights, demonstrating the practical use of Artificial Intelligence and computer vision in environmental monitoring, biodiversity analysis, and smart forestry solutions.",
     borderColor: "#22C55E",
     gradient: "linear-gradient(145deg, #22C55E, #000)",
-    url: "https://github.com/rissss21",
+    url: "https://github.com/Abhay-Agnihotri01/tree-species-classifier",
     dad: "500",
   },
 ];
