@@ -2,7 +2,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
+import { useGLTF, useTexture, Environment, Lightformer, Decal } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
@@ -99,6 +99,9 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
 
   curve.curveType = 'chordal';
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  
+  // Load custom profile picture
+  const profilePic = useTexture("/assets/Abhay.png");
 
   return (
     <>
@@ -124,6 +127,14 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
             onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial map={materials.base.map} map-anisotropy={16} clearcoat={1} clearcoatRoughness={0.15} roughness={0.9} metalness={0.8} />
+              
+              {/* Overlay custom profile picture over the card */}
+              <Decal
+                position={[0, 0.15, 0.02]} // Positioned near the middle
+                rotation={[0, 0, 0]}
+                scale={[0.4, 0.4, 0.1]} // Size of the image on the card
+                map={profilePic}
+              />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
             <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
