@@ -135,18 +135,23 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
 
               {/* Photo Frame */}
               <mesh position={[0, 0.15, 0.011]}>
-                <planeGeometry args={[0.35, 0.35]} />
-                <meshBasicMaterial map={profilePic} />
+                <planeGeometry args={[0.55, 0.55]} />
+                <meshBasicMaterial map={profilePic} transparent={true} />
               </mesh>
 
-              {/* Name */}
-              <Text position={[0, -0.15, 0.011]} fontSize={0.06} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
-                Abhay Agnihotri
+              {/* 'Full Stack' Pill Background */}
+              <RoundedBox args={[0.45, 0.12, 0.01]} radius={0.02} position={[0, -0.22, 0.011]}>
+                <meshBasicMaterial color="#363e6e" />
+              </RoundedBox>
+
+              {/* 'Full Stack' Text */}
+              <Text position={[0, -0.22, 0.017]} fontSize={0.055} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+                Full Stack
               </Text>
               
-              {/* Title */}
-              <Text position={[0, -0.23, 0.011]} fontSize={0.035} color="#a855f7" anchorX="center" anchorY="middle">
-                Full Stack Developer
+              {/* 'Web Development' Text */}
+              <Text position={[0, -0.34, 0.011]} fontSize={0.045} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+                Web Development
               </Text>
             </RoundedBox>
             
